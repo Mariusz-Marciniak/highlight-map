@@ -1,4 +1,5 @@
 import {AfterContentInit, Component, ContentChild, ElementRef, Input, ViewChild} from '@angular/core';
+import {MapHighlightBrush, MapHighlightBrushWithDefaults} from './map-highlight-brush';
 
 @Component({
   selector: 'lib-map-highlight',
@@ -22,6 +23,8 @@ export class MapHighlightComponent implements AfterContentInit {
 
   private context: CanvasRenderingContext2D;
 
+  @Input() mouseOverBrush: MapHighlightBrush;
+
   @Input() src: string;
   @Input() useMap: string;
 
@@ -38,7 +41,7 @@ export class MapHighlightComponent implements AfterContentInit {
     this.updateIndexes();
   }
 
-  onMapOut(event) {
+  onMapOut() {
     this.context.restore();
     this.updateIndexes();
   }
@@ -48,22 +51,30 @@ export class MapHighlightComponent implements AfterContentInit {
       this.canvasForImg.nativeElement.width = this.image.nativeElement.width;
       this.canvasForImg.nativeElement.height = this.image.nativeElement.height;
     }
-    this.drawCoords(event.target.coords.split(','), '#FF0000');
+    this.initContext(new MapHighlightBrushWithDefaults(this.mouseOverBrush));
+    this.drawCoords(event.target.coords.split(','));
     this.updateIndexes();
   }
 
-  drawCoords(coords, color) {
-    this.context.clearRect(0, 0, this.canvasForImg.nativeElement.width, this.canvasForImg.nativeElement.height);
+  initContext(brush: MapHighlightBrushWithDefaults) {
+    this.context.setLineDash(brush.lineDash());
+    this.context.strokeStyle = brush.strokeStyle();
+    this.context.fillStyle = brush.fillStyle();
+    this.context.lineCap = brush.lineCap();
+    this.context.lineWidth = brush.lineWidth();
+    this.context.lineJoin = brush.lineJoin();
+  }
+
+  drawCoords(coords: number[]) {
     this.context.beginPath();
     let i = 0;
     while (i < coords.length) {
       this.context.lineTo(coords[i], coords[i + 1]);
       i += 2;
     }
-    this.context.fillStyle = color;
+    this.context.closePath();
     this.context.stroke();
 
-    this.context.closePath();
     this.context.fill();
   }
 
