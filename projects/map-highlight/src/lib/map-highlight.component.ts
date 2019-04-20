@@ -15,11 +15,11 @@ import {MapHighlightBrush, MapHighlightBrushWithDefaults} from './map-highlight-
 export class MapHighlightComponent implements AfterContentInit {
   @ViewChild('mainContainer') private mainContainer: ElementRef;
 
-  @ViewChild('canvasMap') private canvasForImg: ElementRef;
+  @ViewChild('canvasMap') private canvasMap: ElementRef;
 
-  @ViewChild('highlightedImage') private image: ElementRef;
+  @ViewChild('highlightedImage') private highlightedImage: ElementRef;
 
-  @ContentChild('highlightMap') private imageMap: ElementRef;
+  @ContentChild('highlightMap') private highlightMap: ElementRef;
 
   private context: CanvasRenderingContext2D;
 
@@ -32,10 +32,10 @@ export class MapHighlightComponent implements AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    if (this.imageMap !== null) {
-      this.imageMap.nativeElement.addEventListener('mouseover', this.onMapOver.bind(this));
-      this.imageMap.nativeElement.addEventListener('mouseout', this.onMapOut.bind(this));
-      this.context = this.canvasForImg.nativeElement.getContext('2d');
+    if (this.highlightMap !== null) {
+      this.highlightMap.nativeElement.addEventListener('mouseover', this.onMapOver.bind(this));
+      this.highlightMap.nativeElement.addEventListener('mouseout', this.onMapOut.bind(this));
+      this.context = this.canvasMap.nativeElement.getContext('2d');
     }
     this.mainContainer.nativeElement.style.backgroundImage = 'url(' + this.src + ')';
     this.updateIndexes();
@@ -47,9 +47,9 @@ export class MapHighlightComponent implements AfterContentInit {
   }
 
   onMapOver(event) {
-    if (this.canvasForImg !== null) {
-      this.canvasForImg.nativeElement.width = this.image.nativeElement.width;
-      this.canvasForImg.nativeElement.height = this.image.nativeElement.height;
+    if (this.canvasMap !== null) {
+      this.canvasMap.nativeElement.width = this.highlightedImage.nativeElement.width;
+      this.canvasMap.nativeElement.height = this.highlightedImage.nativeElement.height;
     }
     this.initContext(new MapHighlightBrushWithDefaults(this.mouseOverBrush));
     this.drawCoords(event.target.coords.split(','));
@@ -79,7 +79,7 @@ export class MapHighlightComponent implements AfterContentInit {
   }
 
   updateIndexes() {
-    this.image.nativeElement.before(this.canvasForImg.nativeElement);
+    this.highlightedImage.nativeElement.before(this.canvasMap.nativeElement);
   }
 
 }
