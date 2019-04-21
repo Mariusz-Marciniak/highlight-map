@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ContentChildren, ElementRef, Input, QueryList, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ContentChildren, ElementRef, Input, QueryList, ViewChild} from '@angular/core';
 import {BrushComponent, BrushWithDefaults} from './brush.component';
 import {AreaComponent} from './area.component';
 
@@ -7,7 +7,7 @@ import {AreaComponent} from './area.component';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterContentInit {
+export class MapComponent implements AfterViewInit {
   @ViewChild('mainContainer') private mainContainer: ElementRef;
 
   @ViewChild('canvasMap') private canvasMap: ElementRef;
@@ -28,33 +28,56 @@ export class MapComponent implements AfterContentInit {
   constructor() {
   }
 
-  ngAfterContentInit(): void {
+  ngAfterViewInit(): void {
     this.context = this.canvasMap.nativeElement.getContext('2d');
     this.mainContainer.nativeElement.style.backgroundImage = 'url(' + this.src + ')';
     this.prepareBrushesMap();
-    this.updateIndexes();
+    this.reorderLayers();
+    setTimeout(this.resetCanvas.bind(this), 50);
   }
 
   mapOut() {
-    this.context.restore();
-    this.updateIndexes();
+    this.resetCanvas();
+    this.reorderLayers();
   }
 
   mapOver(event) {
+    this.resetCanvas();
+    const area = this.findAreaByCoords(event.target.coords);
+    const brush = this.findHoverBrush(area);
+    this.initContext(brush);
+    this.drawCoords(event.target.coords.split(','));
+    this.reorderLayers();
+  }
+
+  private drawInitialAreas() {
+    this.areas.forEach(area => {
+      const brush = this.brushesMap[area.brushClass];
+      if (brush) {
+        this.initContext(new BrushWithDefaults(brush));
+        this.drawCoords(area.coords.split(',').map(value => parseInt(value, 10)));
+      }
+    });
+    this.context.save();
+  }
+
+  private resetCanvas() {
     if (this.canvasMap !== null) {
       this.canvasMap.nativeElement.width = this.highlightedImage.nativeElement.width;
       this.canvasMap.nativeElement.height = this.highlightedImage.nativeElement.height;
     }
-    const area = this.findAreaByCoords(event.target.coords);
+    this.drawInitialAreas();
+  }
+
+  private findHoverBrush(area) {
     let brush: BrushWithDefaults;
-    if (area !== undefined && this.brushesMap[area.brushClass + ':hover'] !== undefined) {
-      brush = new BrushWithDefaults(this.brushesMap[area.brushClass + ':hover']);
+    const hoverAttribute = ':hover';
+    if (area !== undefined && this.brushesMap[area.brushClass + hoverAttribute] !== undefined) {
+      brush = new BrushWithDefaults(this.brushesMap[area.brushClass + hoverAttribute]);
     } else {
-      brush = new BrushWithDefaults(this.brushesMap[':hover']);
+      brush = new BrushWithDefaults(this.brushesMap[hoverAttribute]);
     }
-    this.initContext(brush);
-    this.drawCoords(event.target.coords.split(','));
-    this.updateIndexes();
+    return brush;
   }
 
   private initContext(brush: BrushWithDefaults) {
@@ -79,7 +102,7 @@ export class MapComponent implements AfterContentInit {
     this.context.fill();
   }
 
-  private updateIndexes() {
+  private reorderLayers() {
     this.highlightedImage.nativeElement.before(this.canvasMap.nativeElement);
   }
 
