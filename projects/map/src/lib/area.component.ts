@@ -1,5 +1,4 @@
-import {AfterContentInit, Component, ContentChild, ElementRef, Input, ViewChild} from '@angular/core';
-import {MapHighlightBrush, MapHighlightBrushWithDefaults} from './map-highlight-brush';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'highlight-area',
@@ -11,6 +10,7 @@ export class AreaComponent {
   }
 
   @Input() href: string;
+  @Input() brushClass: string;
   @Input() title: string;
   @Input() alt: string;
   @Input() coords: string;

@@ -1,27 +1,29 @@
-export interface MapHighlightBrush {
-  lineWidth?: number;
-  lineCap?: CanvasLineCap;
-  lineJoin?: CanvasLineJoin;
-  strokeStyle?: string | CanvasGradient | CanvasPattern;
-  lineDash?: number[];
-  fillStyle?: string | CanvasGradient | CanvasPattern;
+import {Component, Input} from '@angular/core';
+
+@Component({
+  selector: 'highlight-brush',
+  template: '',
+  styles: []
+})
+export class BrushComponent {
+  constructor() {
+  }
+
+  @Input() brushClass: string;
+  @Input() lineWidth?: number;
+  @Input() lineCap?: CanvasLineCap;
+  @Input() lineJoin?: CanvasLineJoin;
+  @Input() strokeStyle?: string | CanvasGradient | CanvasPattern;
+  @Input() lineDash?: number[];
+  @Input() fillStyle?: string | CanvasGradient | CanvasPattern;
 
 }
 
-export class MapHighlightBrushWithDefaults {
-  private readonly brush: object;
+export class BrushWithDefaults {
+  private readonly brush: BrushComponent;
 
-  constructor(brush: MapHighlightBrush) {
-    if (brush) {
-      try {
-        this.brush = JSON.parse(brush as string);
-      } catch (Error) {
-        console.error('Incorrect JSON object:' + brush);
-        this.brush = JSON.parse('{}');
-      }
-    } else {
-      this.brush = JSON.parse('{}');
-    }
+  constructor(brush: BrushComponent) {
+    this.brush = brush;
   }
 
   lineDash(): number[] {
@@ -49,7 +51,7 @@ export class MapHighlightBrushWithDefaults {
   }
 
   getValue<T>(field: string, defaultValue: T): T {
-    if (this.brush[field]) {
+    if (this.brush && this.brush[field]) {
       return this.brush[field];
     }
     return defaultValue;

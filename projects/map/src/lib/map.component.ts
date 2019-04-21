@@ -1,5 +1,6 @@
-import {AfterContentInit, Component, ContentChild, ElementRef, Input, ViewChild} from '@angular/core';
-import {MapHighlightBrush, MapHighlightBrushWithDefaults} from './map-highlight-brush';
+import {AfterContentInit, Component, ContentChildren, ElementRef, Input, QueryList, ViewChild} from '@angular/core';
+import {BrushComponent, BrushWithDefaults} from './brush.component';
+import {AreaComponent} from './area.component';
 
 @Component({
   selector: 'highlight-map',
@@ -13,9 +14,13 @@ export class MapComponent implements AfterContentInit {
 
   @ViewChild('highlightedImage') private highlightedImage: ElementRef;
 
-  private context: CanvasRenderingContext2D;
+  @ContentChildren(AreaComponent) private areas: QueryList<AreaComponent>;
 
-  @Input() mouseOverBrush: MapHighlightBrush;
+  @ContentChildren(BrushComponent) private brushes: QueryList<BrushComponent>;
+
+  private brushesMap: { [key: string]: BrushComponent; } = {};
+
+  private context: CanvasRenderingContext2D;
 
   @Input() src: string;
   @Input() name: string;
@@ -26,6 +31,7 @@ export class MapComponent implements AfterContentInit {
   ngAfterContentInit(): void {
     this.context = this.canvasMap.nativeElement.getContext('2d');
     this.mainContainer.nativeElement.style.backgroundImage = 'url(' + this.src + ')';
+    this.prepareBrushesMap();
     this.updateIndexes();
   }
 
@@ -39,12 +45,19 @@ export class MapComponent implements AfterContentInit {
       this.canvasMap.nativeElement.width = this.highlightedImage.nativeElement.width;
       this.canvasMap.nativeElement.height = this.highlightedImage.nativeElement.height;
     }
-    this.initContext(new MapHighlightBrushWithDefaults(this.mouseOverBrush));
+    const area = this.findAreaByCoords(event.target.coords);
+    let brush: BrushWithDefaults;
+    if (area !== undefined && this.brushesMap[area.brushClass + ':hover'] !== undefined) {
+      brush = new BrushWithDefaults(this.brushesMap[area.brushClass + ':hover']);
+    } else {
+      brush = new BrushWithDefaults(this.brushesMap[':hover']);
+    }
+    this.initContext(brush);
     this.drawCoords(event.target.coords.split(','));
     this.updateIndexes();
   }
 
-  private initContext(brush: MapHighlightBrushWithDefaults) {
+  private initContext(brush: BrushWithDefaults) {
     this.context.setLineDash(brush.lineDash());
     this.context.strokeStyle = brush.strokeStyle();
     this.context.fillStyle = brush.fillStyle();
@@ -70,4 +83,11 @@ export class MapComponent implements AfterContentInit {
     this.highlightedImage.nativeElement.before(this.canvasMap.nativeElement);
   }
 
+  private findAreaByCoords(coords: string | Coordinates): AreaComponent {
+    return this.areas.find(area => area.coords === coords);
+  }
+
+  private prepareBrushesMap() {
+    this.brushes.forEach(item => this.brushesMap[item.brushClass] = item);
+  }
 }

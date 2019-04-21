@@ -1,8 +1,10 @@
 <p>
-  <highlight-map src="/assets/demo_simple.png"  name="simple" mouseOverBrush='{"lineWidth":10, "strokeStyle":"#00FF00", "fillStyle": "#0000FF50"}'>
+  <highlight-map src="/assets/demo_simple.png"  name="simple">
+    <highlight-brush brushClass=":hover" lineWidth="10" strokeStyle="#00FF00"  fillStyle="#0000FF50"></highlight-brush>
+    <highlight-brush brushClass="blue:hover" lineWidth="10" strokeStyle="#0000FF"  fillStyle="#0000FF"></highlight-brush>
     <highlight-area href="#" coords="47,62,106,61,134,72,135,118,30,116" title="Top Button"></highlight-area>
     <highlight-area href="#" coords="32,157,133,157,127,192,127,211,28,211" title="Bottom Button"></highlight-area>
-    <highlight-area href="#"
+    <highlight-area href="#" brushClass="blue"
           coords="219,190,225,175,237,157,239,148,245,142,251,140,263,140,265,139,310,139,311,145,364,182,363,201,343,221,333,213,329,181,313,177,330,234,295,231,292,174,279,176,282,204,269,220,255,206,267,167,235,193"
           title="Legs">
     </highlight-area>
