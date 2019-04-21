@@ -3,13 +3,7 @@ import {MapHighlightBrush, MapHighlightBrushWithDefaults} from './map-highlight-
 
 @Component({
   selector: 'highlight-map',
-  template: `
-    <div class="map-highlight-container" #mainContainer>
-      <img src="{{src}}" useMap="{{useMap}}" class="map-highlight-image" #highlightedImage>
-      <canvas class="map-highlight-canvas" #canvasMap></canvas>
-      <ng-content></ng-content>
-    </div>
-  `,
+  templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements AfterContentInit {
@@ -19,14 +13,14 @@ export class MapComponent implements AfterContentInit {
 
   @ViewChild('highlightedImage') private highlightedImage: ElementRef;
 
-  @ContentChild('highlightMap') private highlightMap: ElementRef;
+  @ViewChild('highlightMap') private highlightMap: ElementRef;
 
   private context: CanvasRenderingContext2D;
 
   @Input() mouseOverBrush: MapHighlightBrush;
 
   @Input() src: string;
-  @Input() useMap: string;
+  @Input() name: string;
 
   constructor() {
   }

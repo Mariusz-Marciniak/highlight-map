@@ -1,16 +1,7 @@
-div.map-highlight-container {
-  position: relative;
-  background-repeat: no-repeat;
-  padding: 0;
-
-  .map-highlight-image {
-    opacity: 0.000001;
-  }
-  .map-highlight-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-
-}
+<div class="map-highlight-container" #mainContainer>
+  <img src="{{src}}" useMap="#{{name}}" class="map-highlight-image" #highlightedImage>
+  <canvas class="map-highlight-canvas" #canvasMap></canvas>
+  <map name="{{name}}" #highlightMap>
+    <ng-content></ng-content>
+  </map>
+</div>
