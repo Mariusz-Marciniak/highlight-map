@@ -1,7 +1,7 @@
 <div class="map-highlight-container" #mainContainer>
   <img [src]="src" useMap="#{{name}}" class="map-highlight-image" #highlightedImage>
   <canvas class="map-highlight-canvas" #canvasMap></canvas>
-  <map [name]="name" #highlightMap>
+  <map [name]="name" (mouseover)="mapOver($event)" (mouseout)="mapOut()">
     <ng-content></ng-content>
   </map>
 </div>

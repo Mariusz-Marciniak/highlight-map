@@ -13,8 +13,6 @@ export class MapComponent implements AfterContentInit {
 
   @ViewChild('highlightedImage') private highlightedImage: ElementRef;
 
-  @ViewChild('highlightMap') private highlightMap: ElementRef;
-
   private context: CanvasRenderingContext2D;
 
   @Input() mouseOverBrush: MapHighlightBrush;
@@ -26,21 +24,17 @@ export class MapComponent implements AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    if (this.highlightMap !== null) {
-      this.highlightMap.nativeElement.addEventListener('mouseover', this.onMapOver.bind(this));
-      this.highlightMap.nativeElement.addEventListener('mouseout', this.onMapOut.bind(this));
-      this.context = this.canvasMap.nativeElement.getContext('2d');
-    }
+    this.context = this.canvasMap.nativeElement.getContext('2d');
     this.mainContainer.nativeElement.style.backgroundImage = 'url(' + this.src + ')';
     this.updateIndexes();
   }
 
-  onMapOut() {
+  mapOut() {
     this.context.restore();
     this.updateIndexes();
   }
 
-  onMapOver(event) {
+  mapOver(event) {
     if (this.canvasMap !== null) {
       this.canvasMap.nativeElement.width = this.highlightedImage.nativeElement.width;
       this.canvasMap.nativeElement.height = this.highlightedImage.nativeElement.height;

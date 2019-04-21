@@ -12,5 +12,6 @@ export class AreaComponent {
 
   @Input() href: string;
   @Input() title: string;
+  @Input() alt: string;
   @Input() coords: string;
 }
