@@ -33,7 +33,7 @@ export class MapComponent implements AfterViewInit {
     this.mainContainer.nativeElement.style.backgroundImage = 'url(' + this.src + ')';
     this.prepareBrushesMap();
     this.reorderLayers();
-    setTimeout(this.resetCanvas.bind(this), 50);
+    setTimeout(this.resetCanvas.bind(this), 200);
   }
 
   mapOut() {
