@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WorldMapDemoComponent } from './world-map-demo/world-map-demo.component';
-import {MapHighlightModule} from '../../projects/map-highlight/src/lib/map-highlight.module';
 import { SimpleMapDemoComponent } from './simple-map-demo/simple-map-demo.component';
 import { ReadmeComponent } from './readme/readme.component';
+import {MapModule} from '../../projects/map/src/lib/map.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { ReadmeComponent } from './readme/readme.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MapHighlightModule
+    MapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

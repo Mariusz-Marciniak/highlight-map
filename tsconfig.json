@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "map-highlight": [
-        "dist/map-highlight"
+      "map": [
+        "dist/map"
       ],
-      "map-highlight/*": [
-        "dist/map-highlight/*"
+      "map/*": [
+        "dist/map/*"
       ]
     }
   }

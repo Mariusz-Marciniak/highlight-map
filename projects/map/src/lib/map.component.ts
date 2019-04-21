@@ -2,7 +2,7 @@ import {AfterContentInit, Component, ContentChild, ElementRef, Input, ViewChild}
 import {MapHighlightBrush, MapHighlightBrushWithDefaults} from './map-highlight-brush';
 
 @Component({
-  selector: 'lib-map-highlight',
+  selector: 'highlight-map',
   template: `
     <div class="map-highlight-container" #mainContainer>
       <img src="{{src}}" useMap="{{useMap}}" class="map-highlight-image" #highlightedImage>
@@ -10,9 +10,9 @@ import {MapHighlightBrush, MapHighlightBrushWithDefaults} from './map-highlight-
       <ng-content></ng-content>
     </div>
   `,
-  styleUrls: ['./map-highlight.component.scss']
+  styleUrls: ['./map.component.scss']
 })
-export class MapHighlightComponent implements AfterContentInit {
+export class MapComponent implements AfterContentInit {
   @ViewChild('mainContainer') private mainContainer: ElementRef;
 
   @ViewChild('canvasMap') private canvasMap: ElementRef;
@@ -56,7 +56,7 @@ export class MapHighlightComponent implements AfterContentInit {
     this.updateIndexes();
   }
 
-  initContext(brush: MapHighlightBrushWithDefaults) {
+  private initContext(brush: MapHighlightBrushWithDefaults) {
     this.context.setLineDash(brush.lineDash());
     this.context.strokeStyle = brush.strokeStyle();
     this.context.fillStyle = brush.fillStyle();
@@ -65,7 +65,7 @@ export class MapHighlightComponent implements AfterContentInit {
     this.context.lineJoin = brush.lineJoin();
   }
 
-  drawCoords(coords: number[]) {
+  private drawCoords(coords: number[]) {
     this.context.beginPath();
     let i = 0;
     while (i < coords.length) {
@@ -78,7 +78,7 @@ export class MapHighlightComponent implements AfterContentInit {
     this.context.fill();
   }
 
-  updateIndexes() {
+  private updateIndexes() {
     this.highlightedImage.nativeElement.before(this.canvasMap.nativeElement);
   }
 

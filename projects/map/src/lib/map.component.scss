@@ -1,0 +1,16 @@
+div.map-highlight-container {
+  position: relative;
+  background-repeat: no-repeat;
+  padding: 0;
+
+  .map-highlight-image {
+    opacity: 0.000001;
+  }
+  .map-highlight-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+
+}
