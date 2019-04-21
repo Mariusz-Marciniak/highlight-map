@@ -14,7 +14,7 @@ export class BrushComponent {
   @Input() lineCap?: CanvasLineCap;
   @Input() lineJoin?: CanvasLineJoin;
   @Input() strokeStyle?: string | CanvasGradient | CanvasPattern;
-  @Input() lineDash?: number[];
+  @Input() lineDash?: string | number[];
   @Input() fillStyle?: string | CanvasGradient | CanvasPattern;
 
 }
@@ -27,7 +27,12 @@ export class BrushWithDefaults {
   }
 
   lineDash(): number[] {
-    return this.getValue<number[]>('lineDash', [0]);
+    const lineDash = this.getValue<string | number[]>('lineDash', [0]);
+    if (typeof lineDash === 'string') {
+      return lineDash.split(',').map(value => parseInt(value.trim(), 10));
+    } else {
+      return lineDash;
+    }
   }
 
   lineCap(): CanvasLineCap {
@@ -43,11 +48,11 @@ export class BrushWithDefaults {
   }
 
   strokeStyle(): string | CanvasGradient | CanvasPattern {
-    return this.getValue<string | CanvasGradient | CanvasPattern>('strokeStyle', '#000000');
+    return this.getValue<string | CanvasGradient | CanvasPattern>('strokeStyle', '#FFFFFF00');
   }
 
   fillStyle(): string | CanvasGradient | CanvasPattern {
-    return this.getValue<string | CanvasGradient | CanvasPattern>('fillStyle', '#FF000033');
+    return this.getValue<string | CanvasGradient | CanvasPattern>('fillStyle', '#FFFFFF00');
   }
 
   getValue<T>(field: string, defaultValue: T): T {
