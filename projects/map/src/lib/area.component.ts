@@ -14,4 +14,5 @@ export class AreaComponent {
   @Input() title: string;
   @Input() alt: string;
   @Input() coords: string;
+  @Input() inactive: boolean;
 }
