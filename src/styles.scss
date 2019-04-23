@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Alike-Regular;
+  src:url("./assets/Alike-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+  font-family: "Sitka Heading", Alike-Regular, monospace;
+}
+

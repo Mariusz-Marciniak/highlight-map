@@ -1,6 +1,6 @@
-# MapHighlightDemo
+# Demo application for <highlight-map>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.7.
+Demo how to use <highlight-map> component. https://github.com/Mariusz-Marciniak/map-highlight/tree/master/projects/map
 
 ## Development server
 

@@ -1,3 +1,16 @@
 <h1>highlight-map</h1>
 <p>
+  highlight-map is component written in Angular 7 outlining areas defined in map.
+  It allows you to define different types of brushes that can be assigned to individual areas.
+  <br/>
+  The main idea is based on <a href="https://github.com/kemayo/maphilight" >https://github.com/kemayo/maphilight</a>.
+  However current version of this library only supports poly shaped areas.
 </p>
+<pre>
+&lt;highlight-map src="some-image.png" name="component-name"&gt;
+  &lt;highlight-brush brushClass="myBrush" strokeStyle="yellow" lineWidth="5"&gt;&lt;/highlight-brush&gt;
+  &lt;highlight-brush brushClass="myBrush:hover" fillStyle="#00FF0030" lineWidth="1"&gt;&lt;/highlight-brush&gt;
+  &lt;highlight-area brushClass="myBrush"
+        coords="36,377, 37,376, 39,376, 48,377, 47,378, 36,377, 36,377"&gt;&lt;/highlight-area&gt;
+&lt;/highlight-map&gt;
+</pre>

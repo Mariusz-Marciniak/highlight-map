@@ -1,6 +1,10 @@
-# Map
+# highlight-map 
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
+  highlight-map is component written in Angular 7 outlining areas defined in map.
+  It allows you to define different types of brushes that can be assigned to individual areas.
+
+  The main idea is based on https://github.com/kemayo/maphilight.
+  However current version of this library only supports poly shaped areas.
 
 ## Code scaffolding
 
