@@ -4,9 +4,9 @@
   It allows you to define different types of brushes that can be assigned to individual areas.
 
   The main idea is based on https://github.com/kemayo/maphilight.
-  However current version of this library only supports poly shaped areas.
+  However it provides different configuration options and some additional functionalities. Current version of this library only supports poly shaped areas.
 
-## Code scaffolding
+## Usage
 
 Run `ng generate component component-name --project map` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project map`.
 > Note: Don't forget to add `--project map` or else it will be added to the default project in your `angular.json` file. 
