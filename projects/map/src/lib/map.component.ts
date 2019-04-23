@@ -33,21 +33,28 @@ export class MapComponent implements AfterViewInit {
     this.mainContainer.nativeElement.style.backgroundImage = 'url(' + this.src + ')';
     this.prepareBrushesMap();
     this.reorderLayers();
-    setTimeout(this.resetCanvas.bind(this), 200);
   }
 
   mapOut() {
-    this.resetCanvas();
+    this.initCanvas();
     this.reorderLayers();
   }
 
   mapOver(event) {
-    this.resetCanvas();
+    this.initCanvas();
     const area = this.findAreaByCoords(event.target.coords);
     const brush = this.findHoverBrush(area);
     this.initContext(brush);
     this.drawCoords(event.target.coords.split(','));
     this.reorderLayers();
+  }
+
+  initCanvas() {
+    if (this.canvasMap !== null) {
+      this.canvasMap.nativeElement.width = this.highlightedImage.nativeElement.width;
+      this.canvasMap.nativeElement.height = this.highlightedImage.nativeElement.height;
+    }
+    this.drawInitialAreas();
   }
 
   private drawInitialAreas() {
@@ -58,15 +65,6 @@ export class MapComponent implements AfterViewInit {
         this.drawCoords(area.coords.split(',').map(value => parseInt(value, 10)));
       }
     });
-    this.context.save();
-  }
-
-  private resetCanvas() {
-    if (this.canvasMap !== null) {
-      this.canvasMap.nativeElement.width = this.highlightedImage.nativeElement.width;
-      this.canvasMap.nativeElement.height = this.highlightedImage.nativeElement.height;
-    }
-    this.drawInitialAreas();
   }
 
   private findHoverBrush(area) {
@@ -113,4 +111,5 @@ export class MapComponent implements AfterViewInit {
   private prepareBrushesMap() {
     this.brushes.forEach(item => this.brushesMap[item.brushClass] = item);
   }
+
 }
