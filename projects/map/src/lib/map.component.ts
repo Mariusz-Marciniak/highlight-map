@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ContentChildren, ElementRef, Input, QueryList, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ContentChildren, ElementRef, Input, OnChanges, QueryList, ViewChild, SimpleChanges} from '@angular/core';
 import {BrushComponent, BrushWithDefaults} from './brush.component';
 import {AreaComponent} from './area.component';
 
@@ -14,9 +14,9 @@ export class MapComponent implements AfterViewInit {
 
   @ViewChild('highlightedImage') private highlightedImage: ElementRef;
 
-  @ContentChildren(AreaComponent) private areas: QueryList<AreaComponent>;
+  @ContentChildren(AreaComponent) areas: QueryList<AreaComponent>;
 
-  @ContentChildren(BrushComponent) private brushes: QueryList<BrushComponent>;
+  @ContentChildren(BrushComponent) brushes: QueryList<BrushComponent>;
 
   private brushesMap: { [key: string]: BrushComponent; } = {};
 
