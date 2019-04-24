@@ -8,16 +8,22 @@ import {MapComponent} from '../../../projects/map/src/lib/map.component';
 })
 export class ReadmeComponent {
 
+  @ViewChild('angularMap') angularMap: MapComponent;
+
+  private readonly brushes = ['decorationBlue', 'decorationOrange'];
+
+  private currentBrush = -1;
+
+  angularChosenBrush = '';
+
   constructor() {
   }
 
-  @ViewChild('angularMap') angularMap: MapComponent;
-
-  decorate() {
-    this.angularMap.areas.forEach(area => {
-      area.brushClass = 'decorated';
-    });
-    this.angularMap.initCanvas();
+  decorateAngular() {
+    this.currentBrush = (this.currentBrush + 1) % this.brushes.length;
+    this.angularChosenBrush = this.brushes[this.currentBrush];
   }
 
+  decorateComponentDevKit() {
+  }
 }

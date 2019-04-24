@@ -2,3 +2,30 @@ pre {
   background-color: #e5eef9;
   padding: 6px;
 }
+
+button {
+  height: 50px;
+  width: 200px;
+  border-color: #b3959b;
+  background-color: white;
+  border-radius: 10px;
+  font-family: monospace;
+}
+.feature {
+  font-weight: bold;
+}
+.code {
+  font-style: italic;
+  color: orange;
+}
+
+div.usages-container {
+  width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  pre {
+    flex-grow: 1;
+    flex-basis: 100%;
+  }
+}

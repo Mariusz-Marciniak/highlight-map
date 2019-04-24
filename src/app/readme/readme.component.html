@@ -6,25 +6,49 @@
   The main idea is based on <a href="https://github.com/kemayo/maphilight" >https://github.com/kemayo/maphilight</a>.
   However it provides different configuration options and some additional functionalities. Current version of this library only supports poly shaped areas.
 </p>
-<h2>Usage</h2>
-<pre>
-&lt;highlight-map src="some-image.png" name="component-name"&gt;
-  &lt;highlight-brush brushClass="myBrush" strokeStyle="yellow" lineWidth="5"&gt;&lt;/highlight-brush&gt;
-  &lt;highlight-brush brushClass="myBrush:hover" fillStyle="#00FF0030" lineWidth="1"&gt;&lt;/highlight-brush&gt;
-  &lt;highlight-area brushClass="myBrush"
-        coords="36,377, 37,376, 39,376, 48,377, 47,378, 36,377, 36,377"&gt;&lt;/highlight-area&gt;
-&lt;/highlight-map&gt;
-</pre>
+<h2>Features</h2>
 <div>
+  <span class="feature">marking area based on chosen <span class="code">brushClass</span></span>
+  - define <span class="code">highlight-brush</span> component with specific <span class="code">brushClass</span>
+  this brush will be used for all <span class="code">highlight-area</span>s having the same <span class="code">brushClass</span>
+</div>
+<div>
+  <span class="feature">on hover brushes</span>
+  - define brush used on mouseover events by adding <span class="code">:hover</span> to <span class="code">brushClass</span>
+</div>
+<div>
+  <span class="feature">default brush and on hover brush</span>
+  - brush with empty <span class="code">brushClass</span> is used as default;
+  this brush will be used for all <span class="code">highlight-area</span>s without matching brush; similarly brush with
+  <span class="code">brushClass</span> set to <span class="code">:hover</span> will be used as default for on mouseover events
+</div>
+<div>
+  <span class="feature">inactive areas</span>
+  - it is possible to mark area as <span class="code">inactive="true"</span>; such a area is disabled and doesn't react
+  to on mouseover events
+</div>
+<h2>Usage</h2>
+<div class="usages-container">
+  <pre>
+  &lt;highlight-map src="some-image.png" name="component-name"&gt;
+    &lt;highlight-brush brushClass="myBrush" strokeStyle="yellow" lineWidth="5"&gt;&lt;/highlight-brush&gt;
+    &lt;highlight-brush brushClass="myBrush:hover" fillStyle="#00FF0030" lineWidth="1"&gt;&lt;/highlight-brush&gt;
+    &lt;highlight-area brushClass="myBrush"
+          coords="36,377, 37,376, 39,376, 48,377, 47,378, 36,377, 36,377"&gt;&lt;/highlight-area&gt;
+  &lt;/highlight-map&gt;
+  </pre>
   <highlight-map src="/assets/angular.png" name="angular-img" #angularMap>
-    <highlight-brush brushClass="decorated" strokeStyle="blue" ></highlight-brush>
-    <highlight-area inactive="true" coords="35,153, 58,153, 68,124, 118,124, 129,153, 151,153, 131,104, 56,104"></highlight-area>
-    <highlight-area inactive="true" coords="93,20, 56,104, 77,104, 93,70"></highlight-area>
-    <highlight-area inactive="true" coords="131,104, 93,20, 93,70, 109,104"></highlight-area>
+    <highlight-brush brushClass="decorationBlue" fillStyle="blue"></highlight-brush>
+    <highlight-brush brushClass="decorationOrange" fillStyle="orange"></highlight-brush>
+    <highlight-brush brushClass="decorationBlue:hover" fillStyle="yellow"></highlight-brush>
+    <highlight-area [brushClass]="angularChosenBrush" inactive="true" coords="34,153, 58,153, 68,124, 118,124, 129,153, 152,153, 131,104, 56,104"></highlight-area>
+    <highlight-area [brushClass]="angularChosenBrush" coords="93,20, 56,104, 77,104, 93,70"></highlight-area>
+    <highlight-area [brushClass]="angularChosenBrush" inactive="true" coords="131,104, 93,20, 93,70, 109,104"></highlight-area>
+  </highlight-map>
+  <button (click)="decorateAngular()" >Decorate Angular</button>
+  <highlight-map src="/assets/cdk.png" name="component-dev-kit-img" #componentDevKitMap>
 
   </highlight-map>
-  <button (click)="decorate()" >Decorate Angular</button>
+  <button (click)="decorateComponentDevKit()" >Decorate Component Dev Kit</button>
 </div>
-<highlight-map src="/assets/cdk.png" name="component-dev-kit-img" #componentDevKitMap>
 
-</highlight-map>

@@ -1,6 +1,7 @@
-import {AfterViewInit, Component, ContentChildren, ElementRef, Input, OnChanges, QueryList, ViewChild, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, ContentChildren, ElementRef, Input, QueryList, ViewChild} from '@angular/core';
 import {BrushComponent, BrushWithDefaults} from './brush.component';
 import {AreaComponent} from './area.component';
+import SignalNotifier from './signal-notifier';
 
 @Component({
   selector: 'highlight-map',
@@ -22,10 +23,13 @@ export class MapComponent implements AfterViewInit {
 
   private context: CanvasRenderingContext2D;
 
+  private signalNotifier: SignalNotifier;
+
   @Input() src: string;
   @Input() name: string;
 
   constructor() {
+    this.signalNotifier = new SignalNotifier(100, this.repaint.bind(this));
   }
 
   ngAfterViewInit(): void {
@@ -33,15 +37,18 @@ export class MapComponent implements AfterViewInit {
     this.mainContainer.nativeElement.style.backgroundImage = 'url(' + this.src + ')';
     this.prepareBrushesMap();
     this.reorderLayers();
+    this.areas.forEach(area => {
+      area.signalNotifier = this.signalNotifier;
+    });
   }
 
   mapOut() {
-    this.initCanvas();
+    this.repaint();
     this.reorderLayers();
   }
 
   mapOver(event) {
-    this.initCanvas();
+    this.repaint();
     const area = this.findAreaByCoords(event.target.coords);
     const brush = this.findHoverBrush(area);
     this.initContext(brush);
@@ -49,7 +56,7 @@ export class MapComponent implements AfterViewInit {
     this.reorderLayers();
   }
 
-  initCanvas() {
+  repaint() {
     if (this.canvasMap !== null) {
       this.canvasMap.nativeElement.width = this.highlightedImage.nativeElement.width;
       this.canvasMap.nativeElement.height = this.highlightedImage.nativeElement.height;
