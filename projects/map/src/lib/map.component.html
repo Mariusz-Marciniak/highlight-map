@@ -1,6 +1,6 @@
-<div class="map-highlight-container" #mainContainer >
-  <img [src]="src" useMap="#{{name}}" class="map-highlight-image" (load)="repaint()" #highlightedImage>
-  <canvas class="map-highlight-canvas" #canvasMap></canvas>
+<div class="highlight-container" #mainContainer >
+  <img [src]="src" useMap="#{{name}}" class="highlight-image" (load)="repaint()" #highlightedImage>
+  <canvas class="highlight-canvas" #canvasMap></canvas>
   <map [name]="name" (mouseover)="mapOver($event)" (mouseout)="mapOut()">
     <ng-content></ng-content>
   </map>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "map-highlight-demo": {
+    "highlight-map-demo": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/map-highlight-demo",
+            "outputPath": "dist/highlight-map-demo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "map-highlight-demo:build"
+            "browserTarget": "highlight-map-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "map-highlight-demo:build:production"
+              "browserTarget": "highlight-map-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "map-highlight-demo:build"
+            "browserTarget": "highlight-map-demo:build"
           }
         },
         "test": {
@@ -107,7 +107,7 @@
         }
       }
     },
-    "map-highlight-demo-e2e": {
+    "highlight-map-demo-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -116,11 +116,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "map-highlight-demo:serve"
+            "devServerTarget": "highlight-map-demo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "map-highlight-demo:serve:production"
+              "devServerTarget": "highlight-map-demo:serve:production"
             }
           }
         },
@@ -171,5 +171,5 @@
       }
     }
   },
-  "defaultProject": "map-highlight-demo"
+  "defaultProject": "highlight-map-demo"
 }

@@ -5,12 +5,12 @@
   "author": "Mariusz Marciniak",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Mariusz-Marciniak/map-highlight.git"
+    "url": "https://github.com/Mariusz-Marciniak/highlight-map.git"
   },
   "bugs": {
-    "url": "https://github.com/Mariusz-Marciniak/map-highlight/issues"
+    "url": "https://github.com/Mariusz-Marciniak/highlight-map/issues"
   },
-  "homepage": "https://github.com/Mariusz-Marciniak/map-highlight",
+  "homepage": "https://github.com/Mariusz-Marciniak/highlight-map",
   "keywords": ["angular", "image", "map", "area", "component", "maphilight"],
   "license": "MIT",
   "peerDependencies": {

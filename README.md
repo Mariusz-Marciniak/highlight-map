@@ -1,6 +1,6 @@
 # Demo application for &lt;highlight-map&gt;
 
-Demo how to use &lt;highlight-map&gt; component. https://github.com/Mariusz-Marciniak/map-highlight/tree/master/projects/map
+Demo how to use &lt;highlight-map&gt; component. https://github.com/Mariusz-Marciniak/highlight-map/tree/master/projects/map
 
 ## Development server
 

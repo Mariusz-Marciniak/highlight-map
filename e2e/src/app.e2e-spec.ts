@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to map-highlight-demo!');
+    expect(page.getTitleText()).toEqual('Welcome to highlight-map-demo!');
   });
 
   afterEach(async () => {
