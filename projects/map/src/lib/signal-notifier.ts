@@ -10,7 +10,6 @@ export default class SignalNotifier {
   }
 
   notify() {
-    console.log('registered');
     if (this.timer) {
       window.clearTimeout(this.timer);
     }
@@ -20,7 +19,6 @@ export default class SignalNotifier {
   }
 
   private run() {
-    console.log('run');
     this.timer = null;
     this.handler();
   }

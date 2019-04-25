@@ -1,21 +1,27 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import SignalNotifier from './signal-notifier';
 
 @Component({
   selector: 'highlight-brush',
   template: '',
   styles: []
 })
-export class BrushComponent {
+export class BrushComponent implements OnChanges {
   constructor() {
   }
 
-  @Input() brushClass: string;
+  @Input() readonly brushClass: string;
   @Input() lineWidth?: number;
   @Input() lineCap?: CanvasLineCap;
   @Input() lineJoin?: CanvasLineJoin;
   @Input() strokeStyle?: string | CanvasGradient | CanvasPattern;
   @Input() lineDash?: string | number[];
   @Input() fillStyle?: string | CanvasGradient | CanvasPattern;
+  signalNotifier: SignalNotifier;
+
+  ngOnChanges(changes: SimpleChanges): void {
+      this.signalNotifier.notify();
+  }
 
 }
 

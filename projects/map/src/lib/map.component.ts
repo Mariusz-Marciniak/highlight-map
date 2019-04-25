@@ -40,6 +40,10 @@ export class MapComponent implements AfterViewInit {
     this.areas.forEach(area => {
       area.signalNotifier = this.signalNotifier;
     });
+
+    this.brushes.forEach(brush => {
+      brush.signalNotifier = this.signalNotifier;
+    });
   }
 
   mapOut() {
