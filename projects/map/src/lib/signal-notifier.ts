@@ -12,9 +12,9 @@ export default class SignalNotifier {
   notify() {
     console.log('registered');
     if (this.timer) {
-      clearTimeout(this.timer);
+      window.clearTimeout(this.timer);
     }
-    this.timer = setTimeout(() => {
+    this.timer = window.setTimeout(() => {
       this.run();
     }, this.delay);
   }
