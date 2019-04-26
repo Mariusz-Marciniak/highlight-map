@@ -11,7 +11,7 @@ export class ReadmeComponent {
 
   private readonly brushProperties = [
     {lineDash: [2, 4, 3], strokeStyle: 'red', fillStyle: 'orange', lineWidth: 3},
-    {strokeStyle: 'pink', fillStyle: 'cyan', lineWidth: 1},
+    {strokeStyle: 'black', fillStyle: '#cda9ff', lineWidth: 5},
   ];
 
   private currentBrush = -1;
@@ -32,7 +32,7 @@ export class ReadmeComponent {
     this.angularChosenBrush = this.brushClasses[this.currentBrush];
   }
 
-  changesOfBrushProperties() {
+  changeBrushProperties() {
     this.currentBrushProps = (this.currentBrushProps + 1) % this.brushProperties.length;
     this.brushFillStyle = this.brushProperties[this.currentBrushProps].fillStyle;
     this.brushStrokeStyle = this.brushProperties[this.currentBrushProps].strokeStyle;
