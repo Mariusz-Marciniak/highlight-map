@@ -20,7 +20,9 @@ export class BrushComponent implements OnChanges {
   signalNotifier: SignalNotifier;
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (this.signalNotifier) {
       this.signalNotifier.notify();
+    }
   }
 
 }

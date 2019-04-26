@@ -1,6 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
-import {MapComponent} from '../../../projects/map/src/lib/map.component';
-import {BrushComponent} from '../../../projects/map/src/lib/brush.component';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-readme',
@@ -9,21 +7,22 @@ import {BrushComponent} from '../../../projects/map/src/lib/brush.component';
 })
 export class ReadmeComponent {
 
-  @ViewChild('angularMap') angularMap: MapComponent;
-
-  @ViewChild('componentDevKitBrush') componentDevKitBrush: BrushComponent;
-
   private readonly brushClasses = ['decorationBlue', 'decorationOrange'];
 
   private readonly brushProperties = [
-    {lineDash: [2, 4, 3], strokeStyle: 'red', fillStyle: 'orange'},
-    {strokeStyle: 'pink', fillStyle: 'cyan'},
+    {lineDash: [2, 4, 3], strokeStyle: 'red', fillStyle: 'orange', lineWidth: 3},
+    {strokeStyle: 'pink', fillStyle: 'cyan', lineWidth: 1},
   ];
 
   private currentBrush = -1;
   private currentBrushProps = -1;
 
   angularChosenBrush = '';
+  brushLineDash: string | number[];
+  brushFillStyle: string | CanvasGradient | CanvasPattern;
+  brushStrokeStyle: string | CanvasGradient | CanvasPattern;
+  brushLineWidth: number;
+
 
   constructor() {
   }
@@ -35,8 +34,9 @@ export class ReadmeComponent {
 
   changesOfBrushProperties() {
     this.currentBrushProps = (this.currentBrushProps + 1) % this.brushProperties.length;
-    this.componentDevKitBrush.fillStyle = this.brushProperties[this.currentBrushProps].fillStyle;
-    this.componentDevKitBrush.strokeStyle = this.brushProperties[this.currentBrushProps].strokeStyle;
-    this.componentDevKitBrush.lineDash = this.brushProperties[this.currentBrushProps].lineDash;
+    this.brushFillStyle = this.brushProperties[this.currentBrushProps].fillStyle;
+    this.brushStrokeStyle = this.brushProperties[this.currentBrushProps].strokeStyle;
+    this.brushLineWidth = this.brushProperties[this.currentBrushProps].lineWidth;
+    this.brushLineDash = this.brushProperties[this.currentBrushProps].lineDash;
   }
 }

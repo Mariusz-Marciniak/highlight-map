@@ -23,7 +23,7 @@ export class MapComponent implements AfterViewInit {
 
   private context: CanvasRenderingContext2D;
 
-  private signalNotifier: SignalNotifier;
+  private readonly signalNotifier: SignalNotifier;
 
   @Input() src: string;
   @Input() name: string;
