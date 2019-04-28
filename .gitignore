@@ -45,3 +45,4 @@ testem.log
 .DS_Store
 Thumbs.db
 highlight-map.iml
+package-lock.json
