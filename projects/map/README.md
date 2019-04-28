@@ -4,25 +4,23 @@
   It allows you to define different types of brushes that can be assigned to individual areas.
 
   The main idea is based on https://github.com/kemayo/maphilight.
-  However it provides different configuration options and some additional functionalities. Current version of this library only supports poly shaped areas.
+  However it provides different configuration options and some additional functionalities. This library only supports poly shaped areas.
 
-## Usage
+## Demo 
 
-Run `ng generate component component-name --project map` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project map`.
-> Note: Don't forget to add `--project map` or else it will be added to the default project in your `angular.json` file. 
+Demo project: https://github.com/Mariusz-Marciniak/highlight-map
+Deployed demo: https://highlight-map.herokuapp.com/ 
 
-## Build
+## Install library
 
-Run `ng build map` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `npm` 
 
-## Publishing
+## Changelog
+- 0.9.0 initial version
 
-After building your library with `ng build map`, go to the dist folder `cd dist/map` and run `npm publish`.
+## Tested with
+- Firefox
+- Chrome
 
-## Running unit tests
-
-Run `ng test map` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Not supported
+- Microsoft Edge
