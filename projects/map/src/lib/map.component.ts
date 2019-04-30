@@ -34,7 +34,7 @@ export class MapComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.context = this.canvasMap.nativeElement.getContext('2d');
-    this.mainContainer.nativeElement.style.backgroundImage = 'url(' + this.src + ')';
+    this.mainContainer.nativeElement.style.backgroundImage = `url(${this.src})`;
     this.prepareBrushesMap();
     this.reorderLayers();
     this.areas.forEach(area => {
@@ -62,6 +62,8 @@ export class MapComponent implements AfterViewInit {
 
   repaint() {
     if (this.canvasMap !== null) {
+      this.mainContainer.nativeElement.style.width = `${this.highlightedImage.nativeElement.width}px`;
+      this.mainContainer.nativeElement.style.height = `${this.highlightedImage.nativeElement.height}px`;
       this.canvasMap.nativeElement.width = this.highlightedImage.nativeElement.width;
       this.canvasMap.nativeElement.height = this.highlightedImage.nativeElement.height;
     }
