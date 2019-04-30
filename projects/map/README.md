@@ -43,6 +43,7 @@ Deployed demo: https://highlight-map.herokuapp.com/
 Run `npm install @marciniak/map` 
 
 ## Changelog
+- 0.9.1 overwritten text-align property of parent component
 - 0.9.0 initial version
 
 ## Tested with
