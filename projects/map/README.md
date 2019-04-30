@@ -10,7 +10,7 @@ Demo project: https://github.com/Mariusz-Marciniak/highlight-map
 Deployed demo: https://highlight-map.herokuapp.com/ 
 
 ## Features
- - *customizable highlight for areas - define `highlight-brush` component with specific `brushClass` this brush will be used for all `highlight-area`s having the same `brushClass`
+ - *customizable highlight for areas* - define `highlight-brush` component with specific `brushClass` this brush will be used for all `highlight-area`s having the same `brushClass`
  - *on hover brushes* - define brush used on mouseover events by adding `:hover` to `brushClass`
  - *default brushes* - brush with empty `brushClass` is used as default;
   this brush will be used for all `highlight-area`s without matching brush; similarly brush with
