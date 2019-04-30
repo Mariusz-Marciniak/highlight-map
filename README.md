@@ -7,4 +7,4 @@ Demo and documentation for &lt;highlight-map&gt; component. https://github.com/M
 https://highlight-map.herokuapp.com/
 
 ## Install library
-
+Run `npm install @marciniak/map` 

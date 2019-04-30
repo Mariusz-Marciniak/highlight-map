@@ -40,7 +40,7 @@ Deployed demo: https://highlight-map.herokuapp.com/
 | fillStyle | string \| CanvasGradient \| CanvasPattern |
 
 ## Install library
-Run `npm` 
+Run `npm install @marciniak/map` 
 
 ## Changelog
 - 0.9.0 initial version
