@@ -12,9 +12,9 @@ Deployed demo: https://highlight-map.herokuapp.com/
 ## Features
  - *customizable highlight for areas* - define `highlight-brush` component with specific `brushClass` this brush will be used for all `highlight-area`s having the same `brushClass`
  - *on hover brushes* - define brush used on mouseover events by adding `:hover` to `brushClass`
- - *default brushes* - brush with empty `brushClass` is used as default;
+ - *default brushes* - brush with empty, undefined or set to `default-brush` `brushClass` is used as default;
   this brush will be used for all `highlight-area`s without matching brush; similarly brush with
-  `brushClass` set to `:hover` will be used as default for on mouseover events
+  `brushClass` set to `:hover` or `default-brush:hover` will be used as default for on mouseover events
  - *inactive areas* - it is possible to mark area as `inactive="true"`; such a area is disabled and doesn't react to on mouseover events
 
 ## Usage
@@ -43,6 +43,7 @@ Deployed demo: https://highlight-map.herokuapp.com/
 Run `npm install @marciniak/map` 
 
 ## Changelog
+- 0.9.2 default brush class named as default-brush
 - 0.9.1 layout bug fixes:
   - overwritten text-align property of parent component
   - synchronize parent div size with image size

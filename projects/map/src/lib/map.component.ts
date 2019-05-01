@@ -23,6 +23,9 @@ export class MapComponent implements AfterViewInit {
 
   private context: CanvasRenderingContext2D;
 
+  private static readonly defaultBrush = 'default-brush';
+  private static readonly hoverAttribute = ':hover';
+
   private readonly signalNotifier: SignalNotifier;
 
   @Input() src: string;
@@ -72,7 +75,7 @@ export class MapComponent implements AfterViewInit {
 
   private drawInitialAreas() {
     this.areas.forEach(area => {
-      const brush = this.brushesMap[area.brushClass];
+      const brush = this.brushesMap[area.brushClass] ? this.brushesMap[area.brushClass] : this.brushesMap[MapComponent.defaultBrush];
       if (brush) {
         this.initContext(new BrushWithDefaults(brush));
         this.drawCoords(area.coords.split(',').map(value => parseInt(value, 10)));
@@ -82,11 +85,10 @@ export class MapComponent implements AfterViewInit {
 
   private findHoverBrush(area) {
     let brush: BrushWithDefaults;
-    const hoverAttribute = ':hover';
-    if (area !== undefined && this.brushesMap[area.brushClass + hoverAttribute] !== undefined) {
-      brush = new BrushWithDefaults(this.brushesMap[area.brushClass + hoverAttribute]);
+    if (area !== undefined && this.brushesMap[area.brushClass + MapComponent.hoverAttribute] !== undefined) {
+      brush = new BrushWithDefaults(this.brushesMap[area.brushClass + MapComponent.hoverAttribute]);
     } else {
-      brush = new BrushWithDefaults(this.brushesMap[hoverAttribute]);
+      brush = new BrushWithDefaults(this.brushesMap[MapComponent.defaultBrush + MapComponent.hoverAttribute]);
     }
     return brush;
   }
@@ -122,7 +124,15 @@ export class MapComponent implements AfterViewInit {
   }
 
   private prepareBrushesMap() {
-    this.brushes.forEach(item => this.brushesMap[item.brushClass] = item);
+    this.brushes.forEach(item => {
+      if(item.brushClass === undefined || item.brushClass === '') {
+        this.brushesMap[MapComponent.defaultBrush] = item;
+      } else if (item.brushClass === MapComponent.hoverAttribute) {
+        this.brushesMap[MapComponent.defaultBrush + MapComponent.hoverAttribute] = item;
+      } else {
+        this.brushesMap[item.brushClass] = item;
+      }
+    });
   }
 
 }
