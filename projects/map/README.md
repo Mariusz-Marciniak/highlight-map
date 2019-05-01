@@ -13,9 +13,9 @@ Deployed demo: https://highlight-map.herokuapp.com/
  - *customizable highlight for areas* - define `highlight-brush` component with specific `brushClass` this brush will be used for all `highlight-area`s having the same `brushClass`
  - *on hover brushes* - define brush used on mouseover events by adding `:hover` to `brushClass`
  - *default brushes* - brush with empty, undefined or set to `default-brush` `brushClass` is used as default;
-  this brush will be used for all `highlight-area`s without matching brush; similarly brush with
+  this brush will be used for all `highlight-area`s without defined matching brush; similarly brush with
   `brushClass` set to `:hover` or `default-brush:hover` will be used as default for on mouseover events
- - *inactive areas* - it is possible to mark area as `inactive="true"`; such a area is disabled and doesn't react to on mouseover events
+ - *inactive areas* - it is possible to mark area as `inactive="true"`; such a area is disabled and does not react to on mouseover events
 
 ## Usage
 ```html
