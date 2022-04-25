@@ -43,6 +43,7 @@ Deployed demo: https://highlight-map.herokuapp.com/
 Run `npm install @marciniak/map` 
 
 ## Changelog
+- 0.9.3 updated Angular version to 13; tested on Microsoft Edge
 - 0.9.2 default brush class named as default-brush
 - 0.9.1 layout bug fixes:
   - overwritten text-align property of parent component
@@ -52,6 +53,4 @@ Run `npm install @marciniak/map`
 ## Tested with
 - Firefox
 - Chrome
-
-## Not supported
 - Microsoft Edge
