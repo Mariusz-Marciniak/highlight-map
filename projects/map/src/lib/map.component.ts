@@ -119,7 +119,7 @@ export class MapComponent implements AfterViewInit {
     this.highlightedImage.nativeElement.before(this.canvasMap.nativeElement);
   }
 
-  private findAreaByCoords(coords: string | Coordinates): AreaComponent {
+  private findAreaByCoords(coords: string): AreaComponent {
     return this.areas.find(area => area.coords === coords);
   }
 
