@@ -1,7 +1,7 @@
 {
   "name": "@marciniak/map",
-  "version": "0.9.3",
-  "description": "component outlining areas defined in map",
+  "version": "0.9.4",
+  "description": "component outlining and highlighting areas defined in map",
   "author": "Mariusz Marciniak",
   "repository": {
     "type": "git",
@@ -12,7 +12,16 @@
   },
   "private": false,
   "homepage": "https://github.com/Mariusz-Marciniak/highlight-map",
-  "keywords": ["angular", "image", "map", "area", "component", "maphilight"],
+  "keywords": [
+    "highlight",
+    "outlining",
+    "image",
+    "map",
+    "area",
+    "component",
+    "maphilight",
+    "angular"
+  ],
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "~13.3.0",
